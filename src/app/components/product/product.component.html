@@ -1,0 +1,49 @@
+<div class="container">
+
+  <div class="row">
+   <div class="col-md-3"><app-category></app-category></div>
+    <div class="col-md-9">
+      <div *ngIf="dataLoaded==false" class="spinner-border text-success" role="status">
+  <span class="visually-hidden">Loading...</span>
+</div>
+
+<div class="mb-3">
+  <label for="exampleFormControlInput1" class="form-label">Ürün Ara</label>
+  
+  <input type="text" [(ngModel)]="filterText" class="form-control" id="filterText" placeholder="Arama ifadesini giriniz.">
+</div>
+<div *ngIf="filterText.length>1" class="alert alert-primary">
+  {{filterText}} aradınız
+</div>
+
+<table *ngIf="dataLoaded==true" class="table">
+    <thead>
+      <tr>
+        <th>Id</th>
+        <th>Ürün adı</th>
+        <th>Kategori</th>
+        <th>Fiyat</th>
+        <th>Kdv'li Fiyat</th>
+        <th><button  (click)="openDialogg()"
+          type="button" class="btn btn-success">Ürün Ekle</button></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let product of products | filterPipe:filterText">
+        <td>{{ product.id }}</td>
+        <td>{{ product.name }}</td>
+        <td>{{ product.categoryId }}</td>
+        <td>{{ product.price|currency }}</td>
+        <td>{{ product.price|vatAdded:18 | currency }}</td>
+        <td><button (click)="setProduct(product)"  (click)="openDialog()"
+          type="button" class="btn btn-success">Düzenle</button></td>
+      </tr>
+    </tbody>
+    
+  </table>
+    </div>
+    
+    
+  </div>
+  
+</div>
