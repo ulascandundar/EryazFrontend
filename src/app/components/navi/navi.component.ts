@@ -1,3 +1,4 @@
+import { Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { ProductAddComponent } from '../product-add/product-add.component';
@@ -8,9 +9,14 @@ import { ProductAddComponent } from '../product-add/product-add.component';
 })
 export class NaviComponent implements OnInit {
 
-  constructor(private dialogRef:MatDialog) { }
+  constructor(private dialogRef:MatDialog,private router:Router) { }
 
   ngOnInit(): void {
+  }
+
+  logout(){
+    localStorage.removeItem("token")
+    this.router.navigate(["/login"])
   }
 
   

@@ -1,0 +1,21 @@
+<div class="container mt-3">
+    <div class="user-list">
+        <div class="row">
+            <div *ngFor="let user of users" class="col-lg-3 col-md-4 col-sm-6 col-12">
+                <div class="user_profile_info">
+                    <div class="user-up-info">
+                        <img src="https://localhost:44306/images/{{user.path}}">
+                        <h3>{{user.firstName}}</h3>, <small>{{user.lastName}}</small>
+                        <h4>{{user.email}}</h4>
+                        <button class="btn btn-outline-primary btn-sm">
+                            <i class="fas fa-plus"></i>
+                            Arkadaş Ekle
+                        </button>
+                    </div>
+                    <a [routerLink]="['/users/',user.id]" class="view-more">Profili Görüntüle</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

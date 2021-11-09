@@ -17,6 +17,7 @@ import { ProductAddComponent } from '../product-add/product-add.component';
   product:Product
   products: Product[] = [];
   dataLoaded=false;
+  public loading = false;
   filterText=""
   constructor(private productService:ProductService,private activatedRoute:ActivatedRoute,
     private toastrSerivce:ToastrService,private dialogRef:MatDialog ) { }
@@ -43,14 +44,18 @@ import { ProductAddComponent } from '../product-add/product-add.component';
 
 
   getProducts() {
+    this.loading=true;
+
     this.productService.getProducts().subscribe(response=>{
       this.products = response.data
       this.dataLoaded=true;
+      this.loading=false
       
     })   
   }
   getProductsByCategory(categoryId:number) {
     this.productService.getProductsByCategory(categoryId).subscribe(response=>{
+      this.loading=false;
       this.products = response.data
       this.dataLoaded = true;
       console.log(response.data)

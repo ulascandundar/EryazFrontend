@@ -1,0 +1,66 @@
+<div class="container mt-3">
+  <div class="row mb-3">
+    <div class="col-12">
+      <div class="card">
+        <div class="card-body">
+          <div class="form-check form-check-inline">
+            <input
+              class="form-check-input"
+              type="radio"
+              name="radioFollowings"
+              id="radioFollowers"
+              value="option1"
+              (change)="getFollowers()"
+            />
+            <label class="form-check-label" for="radioFollowers"
+              >Takipçiler</label
+            >
+          </div>
+          <div class="form-check form-check-inline">
+            <input
+              class="form-check-input"
+              type="radio"
+              name="radioFollowings"
+              id="radioFollowings"
+              value="option2"
+              (change)="getFollowing()"
+            />
+            <label class="form-check-label" for="radioFollowings"
+              >Takip Edilenler</label
+            >
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="mb-3">
+    <label for="exampleFormControlInput1" class="form-label">Ürün Ara</label>
+    
+    <input type="text" [(ngModel)]="filterText" class="form-control" id="filterText" placeholder="Arama ifadesini giriniz.">
+  </div>
+  <div *ngIf="filterText.length>1" class="alert alert-primary">
+    {{filterText}} aradınız
+  </div>
+
+  <div class="user-list">
+    <div class="row">
+      <div *ngFor="let user of users | friendsFilter:filterText" class="col-lg-3 col-md-4 col-sm-6 col-12">
+        <div class="user_profile_info">
+          <div class="user-up-info">
+            <img src="https://localhost:44306/images/{{ user.path }}" />
+            <h3>{{ user.firstName }}</h3>
+            , <small>{{ user.lastName }}</small>
+            <h4>{{ user.email }}</h4>
+            <button class="btn btn-outline-primary btn-sm">
+              <i class="fas fa-plus"></i>
+              Arkadaş Ekle
+            </button>
+          </div>
+          <a [routerLink]="['/users/', user.id]" class="view-more"
+            >Profili Görüntüle</a
+          >
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
