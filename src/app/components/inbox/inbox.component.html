@@ -1,0 +1,19 @@
+<table class="table">
+    <thead>
+      <tr>
+        <th>Gönderen Adı</th>
+        <th>Tarih</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let message of messages">
+        <td>{{ message.senderName }}</td>
+        <td>{{ message.dateAdded }}</td>    
+        <td><button (click)="showMessage(message.id)"  type="submit" class="btn btn-success">
+            Görüntüle
+        </button></td>     
+      </tr>
+    </tbody>
+    
+  </table>

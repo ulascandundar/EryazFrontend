@@ -28,6 +28,10 @@ import { FollowersComponent } from './components/followers/followers.component';
 import { FollowingComponent } from './components/following/following.component';
 import { FriendsComponent } from './components/friends/friends.component';
 import { NgxLoadingModule } from 'ngx-loading';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { MessageCreateComponent } from './components/messages/message-create/message-create.component';
+import { InboxComponent } from './components/inbox/inbox.component';
+import { MessageDetailComponent } from './components/message-detail/message-detail.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -47,7 +51,10 @@ import { NgxLoadingModule } from 'ngx-loading';
     UserUpdateComponent,
     FollowersComponent,
     FollowingComponent,
-    FriendsComponent
+    FriendsComponent,
+    MessageCreateComponent,
+    InboxComponent,
+    MessageDetailComponent
   ],
   imports: [
     BrowserModule,
@@ -56,13 +63,16 @@ import { NgxLoadingModule } from 'ngx-loading';
     ReactiveFormsModule,
     MatDialogModule,
     FormsModule,
+    ReactiveFormsModule,
+    NgbModule,
     BrowserAnimationsModule,
     ToastrModule.forRoot(
        {
          positionClass:"toast-bottom-right"
        }
     ),
-    NgxLoadingModule.forRoot({})
+    NgxLoadingModule.forRoot({}),
+    NgbModule
   ],
   providers: [ProductComponent,{provide:HTTP_INTERCEPTORS,useClass:AuthInterceptor,multi:true}],
   bootstrap: [AppComponent]

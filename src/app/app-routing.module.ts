@@ -1,3 +1,4 @@
+import { InboxComponent } from './components/inbox/inbox.component';
 import { FriendsComponent } from './components/friends/friends.component';
 import { FollowingComponent } from './components/following/following.component';
 import { FollowersComponent } from './components/followers/followers.component';
@@ -24,6 +25,7 @@ const routes: Routes = [
   {path:"followers", component:FollowersComponent,canActivate:[LoginGuard]},
   {path:"following", component:FollowingComponent,canActivate:[LoginGuard]},
   {path:"friends", component:FriendsComponent,canActivate:[LoginGuard]},
+  {path:"inbox", component:InboxComponent,canActivate:[LoginGuard]},
   {path:"login", component:LoginComponent}
 ];
 

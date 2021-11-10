@@ -35,12 +35,7 @@ export class ProductUpdateComponent implements OnInit {
       this.getAllCategories();
       console.log(this.prod)
       
-      
-      
-      
 
-      
-  
   }
 
   createProductAddForm(){

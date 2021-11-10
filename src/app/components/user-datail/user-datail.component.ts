@@ -1,3 +1,4 @@
+import { MessageCreateComponent } from './../messages/message-create/message-create.component';
 import { LocalstorageService } from './../../services/localstorage.service';
 import { UserToUserService } from './../../services/user-to-user.service';
 import { UserToUser } from './../../models/userToUser';
@@ -6,6 +7,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { UserService } from './../../services/user.service';
 import { Component, OnInit } from '@angular/core';
 import { ToastrService } from 'ngx-toastr';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-user-datail',
@@ -18,7 +20,8 @@ export class UserDatailComponent implements OnInit {
   user:UserProfile
   userToUser:UserToUser
   constructor(private userService:UserService, private toastor:ToastrService,
-     private route:ActivatedRoute,private userToUserService:UserToUserService,private localStorageService:LocalstorageService) { }
+     private route:ActivatedRoute,private userToUserService:UserToUserService,
+     private localStorageService:LocalstorageService,private modalService:NgbModal) { }
 
   ngOnInit(): void {
     this.getUser()
@@ -42,6 +45,12 @@ export class UserDatailComponent implements OnInit {
     },errorResponse=>{
       this.toastor.error(errorResponse.error.message)
     })
+  }
+
+  openSendMessageModel(){
+    const modalRef=this.modalService.open(MessageCreateComponent)
+    modalRef.componentInstance.recipientId=this.user.id
+    modalRef.componentInstance.senderId=this.localStorageService.getIdDecodeToken()
   }
 
 }
