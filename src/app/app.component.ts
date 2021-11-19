@@ -1,4 +1,4 @@
-import { AuthService } from 'src/app/services/auth.service';
+import { AuthService } from './services/auth.service';
 import { Component, OnInit } from '@angular/core';
 import { Product } from './models/product';
 
@@ -7,8 +7,21 @@ import { Product } from './models/product';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent  {
+export class AppComponent implements OnInit{
 
+  /**
+   *
+   */
+  result:boolean
+  constructor(private authService:AuthService) {
+  }
+  ngOnInit(): void {
+    this.result=this.authService.isAuthenticated();
+  }
+  /**
+   *
+   */
+ 
   
   title = 'eryaz';
   products1: Product[] = [];

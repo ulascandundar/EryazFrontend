@@ -9,6 +9,7 @@
                         <div class="form-group">
                             <input type="text" 
                             id="name" 
+                            [(ngModel)]="prod.name"
                             formControlName="name" class="form-control" 
                             placeholder={{prod.name}}/>
                         </div>
@@ -36,8 +37,20 @@
                         <div class="form-group">
                             <input type="number" 
                             id="price" 
+                            [(ngModel)]="prod.price"
                             formControlName="price" class="form-control" 
                             placeholder={{prod.price}}/>
+                        </div>
+                    </div>
+
+                    <div  class="mb-3">
+                        <label for="price">Stok</label>
+                        <div class="form-group">
+                            <input type="number" 
+                            id="stock" 
+                            [(ngModel)]="prod.stock"
+                            formControlName="stock" class="form-control" 
+                            placeholder={{prod.stock}}/>
                         </div>
                     </div>
                     

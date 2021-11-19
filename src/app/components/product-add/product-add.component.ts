@@ -1,3 +1,4 @@
+import { ImageService } from './../../services/image.service';
 import { CategoryService } from './../../services/category.service';
 import { ProductComponent } from './../product/product.component';
 import { Component, OnInit } from '@angular/core';
@@ -14,22 +15,42 @@ import { Category } from 'src/app/models/category';
 })
 export class ProductAddComponent implements OnInit {
 
+  selectedFile: File
+  path:String;
   categories:Category[]=[];
   productAddForm : FormGroup;
   constructor(private formBuilder:FormBuilder, 
     private productService:ProductService, private toastrService:ToastrService,
-    private productComp:ProductComponent,private categoryService:CategoryService) { }
+    private productComp:ProductComponent,private categoryService:CategoryService,private imageService:ImageService) { }
 
   ngOnInit(): void {
     this.createProductAddForm();
     this.getAllCategories();
+  }
+  onFileChanged(event) {
+    this.selectedFile = event.target.files[0]
+
+  }
+  onUpload(){
+    const uploadData = new FormData();
+    uploadData.append("image",this.selectedFile,this.selectedFile.name);
+
+    this.imageService.add(uploadData).subscribe(response=>{
+      this.path=response.message
+      this.toastrService.success(response.message,"Fotoğraf yüklendi")
+      console.log(this.path)
+    },responseError=>{
+      this.toastrService.error(responseError.message,"Fotoğraf yüklenemedi")
+      console.log(uploadData)
+    })
   }
 
   createProductAddForm(){
      this.productAddForm = this.formBuilder.group({
        name:["",Validators.required],
        price: ["",Validators.required],
-       categoryId:["",Validators.required]
+       categoryId:["",Validators.required],
+       stock:["",Validators.required]
      })
   }
 
@@ -44,6 +65,7 @@ export class ProductAddComponent implements OnInit {
   add(){
     if(this.productAddForm.valid){
       let productModel = Object.assign({},this.productAddForm.value)
+      productModel.path=this.path
       this.productService.add(productModel).subscribe(response=>{
         this.toastrService.success(response.message,"Başarılı")
         this.productComp.ngOnInit()

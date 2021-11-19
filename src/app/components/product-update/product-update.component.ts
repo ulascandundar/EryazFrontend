@@ -42,7 +42,8 @@ export class ProductUpdateComponent implements OnInit {
     this.productAddForm = this.formBuilder.group({
       name:["",Validators.required],
       price: ["",Validators.required],
-      categoryId:["",Validators.required]
+      categoryId:["",Validators.required],
+      stock:["",Validators.required]
     })
  }
  getAllCategories(){

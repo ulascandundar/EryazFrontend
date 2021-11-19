@@ -39,4 +39,13 @@ export class MessageService {
     let newPath = this.apiUrl + "messages/showmessage?messageId="+messageId
     return this.httpClient.get<SingleResponseModel<Message>>(newPath);
   }
+
+  deleteMessage(messageId:number):Observable<ResponseModel>{
+    let newPath = this.apiUrl + "messages/deletemessage?messageId="+messageId
+    return this.httpClient.get<SingleResponseModel<Message>>(newPath).pipe(
+      tap(() =>  {
+        this._refreshNeeded.next();
+      })
+    );
+  }
 }

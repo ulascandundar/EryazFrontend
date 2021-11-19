@@ -36,11 +36,13 @@ export class LoginComponent implements OnInit {
       let loginModel = Object.assign({},this.loginForm.value)
 
       this.authService.login(loginModel).subscribe(response=>{
-        this.toastrService.success("Login successful", "info");
+        this.toastrService.success("Giriş Yapıldı", "info");
         
-        
-      // window.location.reload();
-       this.router.navigate(["/products"])
+        this.router.navigate(["/admin/products"])
+        setTimeout(()=>{ 
+        window.location.reload();
+        },500)
+       this.router.navigate(["/admin/products"])
        
       },responseError=>{
         //console.log(responseError)

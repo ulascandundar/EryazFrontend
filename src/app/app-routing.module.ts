@@ -1,3 +1,5 @@
+import { NewPasswordComponent } from './components/new-password/new-password.component';
+import { PasswordRefreshComponent } from './components/password-refresh/password-refresh.component';
 import { InboxComponent } from './components/inbox/inbox.component';
 import { FriendsComponent } from './components/friends/friends.component';
 import { FollowingComponent } from './components/following/following.component';
@@ -15,20 +17,23 @@ import { ProductComponent } from './components/product/product.component';
 
 const routes: Routes = [
   {path:"",pathMatch:"full", component:ProductComponent,canActivate:[LoginGuard]},
-  {path:"products", component:ProductComponent,canActivate:[LoginGuard]},
-  {path:"products/category/:categoryId", component:ProductComponent,canActivate:[LoginGuard]},
-  {path:"products/:id", component:ProductComponent,canActivate:[LoginGuard]},
-  {path:"users", component:UserProfilesComponent,canActivate:[LoginGuard]},
-  {path:"users/:id", component:UserDatailComponent,canActivate:[LoginGuard]},
-  {path:"user/update", component:UserUpdateComponent,canActivate:[LoginGuard]},
-  {path:"add", component:AdminAddComponent,canActivate:[LoginGuard]},
-  {path:"followers", component:FollowersComponent,canActivate:[LoginGuard]},
-  {path:"following", component:FollowingComponent,canActivate:[LoginGuard]},
-  {path:"friends", component:FriendsComponent,canActivate:[LoginGuard]},
-  {path:"inbox", component:InboxComponent,canActivate:[LoginGuard]},
-  {path:"login", component:LoginComponent}
+  {path:"admin/products", component:ProductComponent,canActivate:[LoginGuard]},
+  {path:"admin/products/category/:categoryId", component:ProductComponent,canActivate:[LoginGuard]},
+  {path:"admin/products/:id", component:ProductComponent,canActivate:[LoginGuard]},
+  {path:"admin/users", component:UserProfilesComponent,canActivate:[LoginGuard]},
+  {path:"admin/users/:id", component:UserDatailComponent,canActivate:[LoginGuard]},
+  {path:"admin/user/update", component:UserUpdateComponent,canActivate:[LoginGuard]},
+  {path:"admin/add", component:AdminAddComponent,canActivate:[LoginGuard]},
+  {path:"admin/followers", component:FollowersComponent,canActivate:[LoginGuard]},
+  {path:"admin/following", component:FollowingComponent,canActivate:[LoginGuard]},
+  {path:"admin/friends", component:FriendsComponent,canActivate:[LoginGuard]},
+  {path:"admin/inbox", component:InboxComponent,canActivate:[LoginGuard]},
+  {path:"admin/newpassword", component:NewPasswordComponent,canActivate:[LoginGuard]},
+  {path:"admin/passwordrefresh", component:PasswordRefreshComponent},
+  {path:"admin/login", component:LoginComponent},
+  { path: 'customer', loadChildren: () => import('./customer/customer.module').then(m => m.CustomerModule) }
 ];
-
+//newpassword
 @NgModule({
   imports: [RouterModule.forRoot(routes, {onSameUrlNavigation:"reload"})],
   exports: [RouterModule]

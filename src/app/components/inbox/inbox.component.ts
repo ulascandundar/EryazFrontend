@@ -1,3 +1,4 @@
+import { Router } from '@angular/router';
 import { MessageDetailComponent } from './../message-detail/message-detail.component';
 import { MatDialog } from '@angular/material/dialog';
 import { ToastrService } from 'ngx-toastr';
@@ -16,7 +17,7 @@ export class InboxComponent implements OnInit {
   messages:Message[]
   message:Message
   constructor(private localStorageService:LocalstorageService,private messageService:MessageService,
-    private toastrSerivce:ToastrService,private dialogRef:MatDialog) { }
+    private toastrSerivce:ToastrService,private dialogRef:MatDialog,private router: Router) { }
 
   ngOnInit(): void {
     this.getInbox();
@@ -25,6 +26,7 @@ export class InboxComponent implements OnInit {
   getInbox(){
     this.messageService.getInbox(this.localStorageService.getIdDecodeToken()).subscribe(response=>{
       this.messages=response.data
+      console.log(this.localStorageService.getClaimsDecodeToken())
     })
   }
 
@@ -36,6 +38,20 @@ export class InboxComponent implements OnInit {
       })
       
     })
+  }
+
+  deleteMethod(messageId:number) {
+    this.messageService.deleteMessage(messageId).subscribe(response=>{
+      this.router.navigate(['/inbox'])
+      
+  .then(() => {
+    window.location.reload();
+  });
+  
+      this.toastrSerivce.warning("Mesaj Silindi");
+    })
+    console.log("silindi")
+    this.toastrSerivce.warning("Mesaj Silindi");
   }
 
 }

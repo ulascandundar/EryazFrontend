@@ -40,8 +40,30 @@
                             placeholder="Fiyatı"/>
                         </div>
                     </div>
+
+                    <div  class="mb-3">
+                        <label for="price">Stok</label>
+                        <div class="form-group">
+                            <input type="number" 
+                            id="stock" 
+                            formControlName="stock" class="form-control" 
+                            placeholder="Stok"/>
+                        </div>
+                    </div>
+
+                    
                     
                 </form>
+            </div>
+
+            <div>
+                <div>Fotoğraf Yükle</div>
+                <input
+                    style="display: none"
+                    type="file" (change)="onFileChanged($event)"
+                    #fileInput>
+                    <button (click)="fileInput.click()">Select File</button>
+                    <button (click)="onUpload()" >Upload!</button>
             </div>
             
             <div class="card-footer">

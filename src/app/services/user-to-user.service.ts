@@ -14,5 +14,10 @@ export class UserToUserService {
     let newPath = this.apiUrl +"follow"
     return this.httpClient.post<ResponseModel>(newPath+"?userId="+userId+"&followerId="+followerId,{})
   }
+
+  isFollow(followerId:number,userId:number):Observable<ResponseModel>{
+    let newPath = this.apiUrl +"isFollow?followerId="+followerId+"&userId="+userId
+    return this.httpClient.get<ResponseModel>(newPath)
+  }
 }
 //https://localhost:44306/api/UserToUser/follow?userId=2&followerId=3

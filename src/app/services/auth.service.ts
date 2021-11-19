@@ -1,3 +1,5 @@
+import { LocalstorageService } from './localstorage.service';
+import { ResponseModel } from './../models/responseModel';
 import { UserForRegister } from './../models/userForRegister';
 import { Observable } from 'rxjs';
 import { Router } from '@angular/router';
@@ -18,7 +20,7 @@ export class AuthService {
   tokenn:any;
   apiUrl = 'https://localhost:44306/api/auth/';
   jwtHelper=new JwtHelperService();
-  constructor(private httpClient:HttpClient,private router:Router) { }
+  constructor(private httpClient:HttpClient,private router:Router,private localStorageService:LocalstorageService) { }
 
   login(loginModel:LoginModel){
     return this.httpClient.post<SingleResponseModel<TokenModel>>(this.apiUrl+"login",loginModel).pipe(
@@ -37,11 +39,24 @@ export class AuthService {
     
   }
 //localStorage.setItem("token",response.data.token)
+
+  passwordRefresh(email):Observable<ResponseModel>{
+    let newPath = this.apiUrl +"passwordrefresh?email="+email
+    return this.httpClient.get<ResponseModel>(newPath)
+  }
+
+  passwordReset(id:number,password:string):Observable<ResponseModel>{
+    let newPath = this.apiUrl +"passwordreset?id="+id+"&password="+password
+    return this.httpClient.get<ResponseModel>(newPath)
+  }
   
 
   isAuthenticated(){
     if(localStorage.getItem("token")){
-      return true;
+      if (this.localStorageService.getClaimsDecodeToken()=="admin") {
+        return true
+      }
+      return false
     }
     else{
       return false;

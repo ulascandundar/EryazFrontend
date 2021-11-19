@@ -27,6 +27,7 @@ export class UserDatailComponent implements OnInit {
     this.getUser()
     console.log(this.user)
     console.log(this.user)
+    this.isFollow();
   }
 
   getUser(){
@@ -34,6 +35,14 @@ export class UserDatailComponent implements OnInit {
         this.user=user.data
     },responseError=>{
       this.toastor.error(responseError)
+    })
+  }
+
+  isFollow(){
+    this.userToUserService.isFollow(this.localStorageService.getIdDecodeToken(),this.route.snapshot.params["id"]).subscribe(result=>{
+      this.followText="Takip ediyorsunuz"
+    },errorResponse=>{
+      this.followText="Takip Et"
     })
   }
 

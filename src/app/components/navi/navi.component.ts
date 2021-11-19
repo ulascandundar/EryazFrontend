@@ -16,7 +16,12 @@ export class NaviComponent implements OnInit {
 
   logout(){
     localStorage.removeItem("token")
-    this.router.navigate(["/login"])
+    this.router.navigate(["/admin/login"])
+    setTimeout(()=>{ 
+    window.location.reload();
+    },500)
+    this.router.navigate(["/admin/login"])
+    
   }
 
   

@@ -12,17 +12,17 @@
           <li class="nav-item">
             <a class="nav-link" href="#">Link</a>
           </li>
-          <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-              Dropdown
-            </a>
-            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-              <li><a class="dropdown-item" href="#">Action</a></li>
-              <li><a class="dropdown-item" href="#">Another action</a></li>
-              <li><hr class="dropdown-divider"></li>
-              <li><a class="dropdown-item" href="#">Something else here</a></li>
-            </ul>
-          </li>
+          <div ngbDropdown class="d-inline-block">
+            <button class="btn btn-outline-primary" id="dropdownBasic1" ngbDropdownToggle>Profil</button>
+            <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
+              <a ngbDropdownItem href="/admin/inbox">Gelen Kutusu</a>
+              <a ngbDropdownItem href="/admin/users">Diğer Kullanıcılar</a>
+              <a ngbDropdownItem href="/admin/followers">Takipçiler</a>
+              <a ngbDropdownItem href="/admin/following">Takip Edilenler</a>
+              <a ngbDropdownItem href="/admin/friends">Arkadaşlar</a>
+              <a ngbDropdownItem href="/admin/user/update">Ben</a>
+            </div>
+          </div>
           <li class="nav-item">
             
           </li>

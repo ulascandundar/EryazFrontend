@@ -36,7 +36,9 @@
                         <input required type="text" class="form-control" name="email" [(ngModel)]="user.email">
                     </div>
                     <button [disabled]="editForm.invalid || !editForm.dirty" (click)="updateUser()" class="btn btn-success btn-block">Kaydet</button>
+                    
                 </form>
+                <a class="btn btn-success btn-block" href="/newpassword">Şifre Değiştirme</a>
             </div>
           </div>
       </div>

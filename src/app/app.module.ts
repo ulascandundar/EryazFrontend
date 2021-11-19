@@ -6,7 +6,7 @@ import { FormsModule,ReactiveFormsModule } from '@angular/forms';
 import {MatDialogModule} from '@angular/material/dialog';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
-
+import * as $ from "jquery";
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { ProductComponent } from './components/product/product.component';
@@ -32,6 +32,14 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { MessageCreateComponent } from './components/messages/message-create/message-create.component';
 import { InboxComponent } from './components/inbox/inbox.component';
 import { MessageDetailComponent } from './components/message-detail/message-detail.component';
+import { SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2';
+import { PasswordRefreshComponent } from './components/password-refresh/password-refresh.component';
+import { NewPasswordComponent } from './components/new-password/new-password.component';
+import { DataTablesModule, DataTableDirective } from 'angular-datatables';
+import { PaginationModule } from 'ngx-bootstrap/pagination';
+
+
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -54,7 +62,9 @@ import { MessageDetailComponent } from './components/message-detail/message-deta
     FriendsComponent,
     MessageCreateComponent,
     InboxComponent,
-    MessageDetailComponent
+    MessageDetailComponent,
+    PasswordRefreshComponent,
+    NewPasswordComponent
   ],
   imports: [
     BrowserModule,
@@ -63,9 +73,12 @@ import { MessageDetailComponent } from './components/message-detail/message-deta
     ReactiveFormsModule,
     MatDialogModule,
     FormsModule,
+    DataTablesModule.forRoot(),
     ReactiveFormsModule,
     NgbModule,
+    PaginationModule.forRoot(),
     BrowserAnimationsModule,
+    SweetAlert2Module.forRoot(),
     ToastrModule.forRoot(
        {
          positionClass:"toast-bottom-right"
